@@ -23,8 +23,15 @@ jobs:
         with:
           channel: 'stable'
 
+      - name: Reconstruct Project Files
+        run: |
+          flutter create . --platforms=android --org=com.denaly
+
       - name: Install Dependencies
         run: flutter pub get
+
+      - name: Generate App Icons
+        run: flutter pub run flutter_launcher_icons || true
 
       - name: Build APK
         run: flutter build apk --release
